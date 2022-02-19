@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from math import pi, sin
 from image_reader import *
 from os import path, mkdir
