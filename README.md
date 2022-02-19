@@ -19,6 +19,6 @@ pip install -r requirements.txt
 
 Generate the images with:
 ```bash 
-python ./main.py
+python ./src/main.py
 ```
 `deactivate` to exit virtual environment.
