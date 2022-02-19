@@ -1,5 +1,5 @@
 # ACG-CW2
-Part 1 of the Advanced Computer Graphics Coursework 1. Assembly of an HDR image.
+Parts 3 of the Advanced Computer Graphics Coursework 2. Generate samples on an EM using median cut.
 
 ## Virtual environment and installation
 Enter project:
