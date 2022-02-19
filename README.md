@@ -1,4 +1,4 @@
-# ACG-CW1
+# ACG-CW2
 Part 1 of the Advanced Computer Graphics Coursework 1. Assembly of an HDR image.
 
 ## Virtual environment and installation
