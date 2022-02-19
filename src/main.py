@@ -75,10 +75,13 @@ def scaleIntensityMap(env_map):
 
 if __name__ == "__main__":
     # Read in lat-long environment map
-    env_map = read_pfm("../GraceCathedral/grace_latlong.pfm")
+    env_map = read_pfm("GraceCathedral/grace_latlong.pfm")
     scaled_intensity_map = scaleIntensityMap(env_map)
 
-    env_map = split(read_ppm("../GraceCathedral/grace_latlong.ppm"), scaled_intensity_map, splits=2)
+    if not path.exists("./images/"):
+        mkdir("images")
 
-    write_ppm(env_map, "../envMap.ppm")
+    for i in range(7):
+        write_pfm(split(read_pfm("GraceCathedral/grace_latlong.pfm"),
+                        scaled_intensity_map, splits=i), f"./images/{i} splits.pfm")
 
