@@ -1,4 +1,5 @@
 venv
 *.ppm
+*.pfm
 .idea
 .DS_Store
