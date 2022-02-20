@@ -114,3 +114,7 @@ if __name__ == "__main__":
     scaled_ls_map = gammaCorrection(light_source_map/light_source_map.max())
     write_ppm(scaled_ls_map, "./images/light_source_map.ppm")
 
+    # Output PBRT images
+    for i in range(4):
+        write_ppm(gammaCorrection(read_pfm(f"./pbrt/{2**(i+3)} samples.pfm")), f"./images/{2**(i+3)} samples.ppm")
+
