@@ -1,6 +1,7 @@
 venv
 *.ppm
 *.pfm
+*.jpeg
 .idea
 .DS_Store
 images
