@@ -85,8 +85,13 @@ def scaleIntensityMap(env_map):
 
 
 def gammaCorrection(pfm_map):
-    norm_pfm_map = pfm_map / np.max(pfm_map)
-    return (np.power(norm_pfm_map, 1/GAMMA)*255).astype(np.uint8)
+    for i in range(pfm_map.shape[0]):
+        for j in range(pfm_map.shape[1]):
+            for k in range(pfm_map.shape[2]):
+                if pfm_map[i, j, k] > 1:
+                    pfm_map[i, j, k] = 1
+
+    return (np.power(pfm_map, 1/GAMMA)*255).astype(np.uint8)
 
 
 if __name__ == "__main__":
@@ -99,11 +104,13 @@ if __name__ == "__main__":
 
     for i in range(7):
         env_map = read_pfm("GraceCathedral/grace_latlong.pfm")
-        write_pfm(medianSplit(env_map, scaled_intensity_map, splits=i), f"./images/{pow(2,i)} partitions.pfm")
+        split = medianSplit(env_map, scaled_intensity_map, splits=i)
+        write_pfm(split, f"./images/{pow(2,i)} partitions.pfm")
+        write_ppm(gammaCorrection(split), f"./images/{pow(2,i)} partitions.ppm")
 
     empty_img = np.zeros_like(env_map)
     light_source_map = medianSplit(empty_img, scaled_intensity_map, splits=6, show_divisions=False)
-    scaled_ls_map = gammaCorrection(light_source_map)
     write_pfm(light_source_map, "./images/light_source_map.pfm")
+    scaled_ls_map = gammaCorrection(light_source_map/light_source_map.max())
     write_ppm(scaled_ls_map, "./images/light_source_map.ppm")
 
